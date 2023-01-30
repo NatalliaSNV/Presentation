@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Lodash</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/league.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                    <h2>Lodash in 2023: necessary or obsolete?</h2>
+                </section>
+				<section>
+                    <h3>Lodash can be broken down into several main areas:</h3> 
+                    <p class="fragment" data-fragment-index="1">Utilities: for simplifying common programming tasks such as determining type as well as simplifying math operations.</p>
+                    <p class="fragment" data-fragment-index="2">Function: simplifying binding, decorating, constraining, throttling, debouncing, currying, and changing the pointer.</p>
+                    <p class="fragment" data-fragment-index="3">String: conversion functions for performing basic string operations, such as trimming, converting to uppercase, camel case, etc.</p>
+                </section>
+                <section>
+                    <h3>Lodash can be broken down into several main areas:</h3> 
+                    <p class="fragment" data-fragment-index="1">Array: creating, splitting, combining, modifying, and compressing</p>
+                    <p class="fragment" data-fragment-index="2">Collection: iterating, sorting, filtering, splitting, and building</p>
+                    <p class="fragment" data-fragment-index="3">Object: accessing, extending, merging, defaults, and transforming</p>
+                    <p class="fragment" data-fragment-index="4">Seq: chaining, wrapping, filtering, and testing.</p>
+                </section>
+                <section>
+                    <img data-src="lodash_npm.jpg">
+                </section>
+                <section>
+                    What You Already Can Do Without Lodash
+                </section>
+                <section>
+                    <section>
+                        <p data-id="code-title">Concatenate arrays, without mutating the original array:</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            let oneStooge = ["Mon"];
+                            let twoStooges = ["Larry", "Curly"];
+    
+                            // Both create ["Mon", "Larry", "Curly"]
+                            let threeStoogesLodash = _.concat(oneStooge, twoStooges);
+                            let threeStoogesVanilla = [...oneStooge, ...twoStooges];
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p data-id="code-title">Fill part of an array with a single value (mutates the array):</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            let someArray = [100, 99, 98, 97, 96, 95];
+                            let someArrayCopy = [...someArray];
+                            _.fill(someArray, 0, 2, 5); // [100, 99, 0, 0, 0, 95]
+                            someArrayCopy.fill(0, 2, 5); // [100, 99, 0, 0, 0, 95]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p data-id="code-title">Flatten an array:</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            let sonicCharacters = [
+                                "Sonic",
+                                "Tails",
+                                "Knuckles",
+                                ["Amy Rose", "Shadow", "Dr. Eggman"]
+                            ];
+                        
+                            // Both return:
+                            // ["Sonic", "Tails", "Knuckles", "Amy Rose", "Shadow", "Dr. Eggman"]
+                            let sonicCharactersFlatLodash = _.flatten(sonicCharacters);
+                            let sonicCharactersFlatVanilla = sonicCharacters.flat();
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p data-id="code-title">Create a duplicate-free version of the array:</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            let batmanLyrics = ["na", "na", "na", "na", "na", "Batman!"];
+
+                            // Both return ["na", "Batman"]
+                            let batmanLyricsUniqueLodash = _.uniq(batmanLyrics);
+                            let batmanLyricsUniqueVanilla = [...new Set(batmanLyrics)];
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p data-id="code-title">Return an array with elements filtered out:</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            let countries = [
+                                "United States", 
+                                "Belgium",
+                                "Japan",
+                                "China",
+                                "South Korea"
+                            ];
+                        
+                            // Both return ["Japan", "China", "South Korea"]
+                            let asianCountriesLodash = _.filter(
+                                countries,
+                                country => country != "United States" && country != "Belgium"
+                            );
+                            let asianCountriesVanilla = countries.filter(
+                                country => country != "United States" && country != "Belgium"
+                            );
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p data-id="code-title">Check if an array includes a certain value:</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            let frenchFlagColors = ["Blue", "White", "Red"];
+                            // Both return false
+                            let frenchFlagHasGreenLodash = _.include(frenchFlagColors, "Green");
+                            let frenchFlagHasGreenVanilla = frenchFlagColors.include("Green");
+                        </code></pre>
+                    </section>
+                    <section>
+                        <p data-id="code-title">Math and Date:</p>
+                        <pre data-id="code-animation"><code class="hljs javascript" data-trim data-line-numbers>
+                            _.now(); //1613434837495
+                            Date.now(); //1613434837495
+                            
+                            _.add(6, 4); //10
+                            6 + 4; //10
+                            
+                            _.ceil(4.1); //5
+                            Math.ceil(4.1); //5
+                            
+                            _.max([1,2,3]); //3
+                            Math.max(...[1,2,3]); //3
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <h3>But Sometimes You Do Need Lodash</h3>
+                </section>
+                <section>
+                    <p data-id="code-title">You can import just the functions you need. For example:</p>
+                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-noescape>
+                        // In ES6 module style:
+                        import map from "lodash/map";
+                        import cloneDeep from "lodash/cloneDeep";
+                        
+                        // Or their CommonJS counterparts:
+                        const map = require("lodash/map");
+                        const cloneDeep = require("lodash/cloneDeep");
+                    </code></pre>
+                </section>
+                <section>
+                    <p data-id="code-title">In fact, Lodash has a NPM package for every utility. You can just install the functions you need, like this:</p>
+                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-noescape>
+                        npm i lodash.clonedeep --save
+                    </code></pre>
+                    <p data-id="code-title">However, if you decide to install specific utilities from Lodash, you have to import them differently:</p>
+                    <pre data-id="code-animation"><code class="hljs javascript" data-trim data-noescape>
+                        // In ES6 module style:
+                        import cloneDeep from "lodash.clonedeep";
+
+                        // Or their CommonJS counterpart:
+                        const cloneDeep = require("lodash.clonedeep");
+                    </code></pre>
+                </section>
+                <section>
+                    <section>
+                        <h2>Conclusion</h2>
+                    </section>
+                    <section>
+                        <p>Pre ES6, lodash was an absolute gem, just like jQuery was back in its day, providing rich cross-browser functionality. These days, all the browsers treat JavaScript standards fundamentally the same, with very little difference.</p>
+                    </section>
+                    <section>
+                        <p>Do we need lodash today? Not really, no. Core JS and Babel do a fantastic job in compiling ES6+ code to ES5 compatible code. A lot of the cross-browser compatible functionality that lodash offers is now easily replicatable in the browser natively. There are lightweight options for merge and cloneDeep, and even native ways of doing cloneDeep, as long as the structure doesn’t include functions, such as using JSON.parse(JSON.stringify(original)).</p>
+                    </section>
+                    <section>
+                        <p>Specific functionality can be brought in on a needs-basis, but other functionality, such as get can easily be created to be project and application specific.</p>
+                    </section>
+                    <section>
+                        <p>While lodash offers a tremendous library of functionality, much of it is no longer required, and the cost of importing lodash into your application can be huge, well over 600kb if your compiler doesn’t shake the unrequired code, or you use lodash throughout your application.</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>Thanks!</h2>
+                    <p>Natallia Siniak</p>
+                </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
